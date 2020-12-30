@@ -1,0 +1,356 @@
+
+m005.elf:     file format elf32-avr
+
+
+Disassembly of section .text:
+
+00000000 <__ctors_end>:
+	...
+
+00003000 <replace_0x1ce4>:
+    3000:	4d 30       	cpi	r20, 0x0D	; 13
+    3002:	30 35       	cpi	r19, 0x50	; 80
+
+00003004 <replace_0x1cf8>:
+    3004:	20 20       	and	r2, r0
+    3006:	20 20       	and	r2, r0
+    3008:	20 20       	and	r2, r0
+    300a:	20 20       	and	r2, r0
+    300c:	4d 4b       	sbci	r20, 0xBD	; 189
+    300e:	2d 33       	cpi	r18, 0x3D	; 61
+    3010:	31 32       	cpi	r19, 0x21	; 33
+    3012:	20 54       	subi	r18, 0x40	; 64
+
+00003014 <replace_0x180c>:
+    3014:	fe e0       	ldi	r31, 0x0E	; 14
+
+00003016 <replace_0x1d18>:
+    3016:	7f 20       	and	r7, r15
+    3018:	7e 7f       	andi	r23, 0xFE	; 254
+
+00003019 <replace_0x1d2e>:
+    3019:	7f 20       	and	r7, r15
+    301b:	7e 7f       	andi	r23, 0xFE	; 254
+
+0000301c <replace_0x1dc1>:
+    301c:	7f 7e       	andi	r23, 0xEF	; 239
+
+0000301e <fave_modes>:
+    301e:	76 77       	andi	r23, 0x76	; 118
+    3020:	7b 78       	andi	r23, 0x8B	; 139
+    3022:	83 86       	std	Z+11, r8	; 0x0b
+    3024:	81 86       	std	Z+9, r8	; 0x09
+    3026:	81 76       	andi	r24, 0x61	; 97
+    3028:	86 86       	std	Z+14, r8	; 0x0e
+
+0000302a <hookloopmain>:
+    302a:	eb 89       	ldd	r30, Y+19	; 0x13
+    302c:	ee 70       	andi	r30, 0x0E	; 14
+    302e:	e6 30       	cpi	r30, 0x06	; 6
+    3030:	39 f4       	brne	.+14     	; 0x3040 <nothingtodo>
+    3032:	ee 85       	ldd	r30, Y+14	; 0x0e
+    3034:	e0 fd       	sbrc	r30, 0
+    3036:	0e 94 22 18 	call	0x3044	; 0x3044 <display_debug_counter>
+    303a:	e1 fd       	sbrc	r30, 1
+    303c:	0e 94 2e 18 	call	0x305c	; 0x305c <rand3_mode>
+
+00003040 <nothingtodo>:
+    3040:	0c 94 85 18 	jmp	0x310a	; 0x310a <goback>
+
+00003044 <display_debug_counter>:
+    3044:	ed 85       	ldd	r30, Y+13	; 0x0d
+    3046:	e2 30       	cpi	r30, 0x02	; 2
+    3048:	11 f0       	breq	.+4      	; 0x304e <not_in_menu>
+    304a:	0c 94 85 18 	jmp	0x310a	; 0x310a <goback>
+
+0000304e <not_in_menu>:
+    304e:	ef 85       	ldd	r30, Y+15	; 0x0f
+    3050:	e3 95       	inc	r30
+    3052:	ef 87       	std	Y+15, r30	; 0x0f
+    3054:	fd e4       	ldi	r31, 0x4D	; 77
+    3056:	0e 94 5c 09 	call	0x12b8	; 0x12b8 <display_number_on_display>
+    305a:	08 95       	ret
+
+0000305c <rand3_mode>:
+    305c:	af 85       	ldd	r26, Y+15	; 0x0f
+    305e:	a0 30       	cpi	r26, 0x00	; 0
+    3060:	11 f0       	breq	.+4      	; 0x3066 <is_zero>
+    3062:	0c 94 53 18 	jmp	0x30a6	; 0x30a6 <check_time>
+
+00003066 <is_zero>:
+    3066:	a0 e0       	ldi	r26, 0x00	; 0
+    3068:	ad a7       	std	Y+45, r26	; 0x2d
+    306a:	aa e0       	ldi	r26, 0x0A	; 10
+    306c:	ae a7       	std	Y+46, r26	; 0x2e
+    306e:	0e 94 ac 05 	call	0xb58	; 0xb58 <r26_is_random_number_between_0x8d_0x8e>
+    3072:	ee e1       	ldi	r30, 0x1E	; 30
+    3074:	f0 e3       	ldi	r31, 0x30	; 48
+    3076:	ea 0f       	add	r30, r26
+    3078:	fd 1f       	adc	r31, r29
+    307a:	a4 91       	lpm	r26, Z
+    307c:	aa 95       	dec	r26
+    307e:	af 87       	std	Y+15, r26	; 0x0f
+    3080:	ab 8f       	std	Y+27, r26	; 0x1b
+    3082:	e4 e0       	ldi	r30, 0x04	; 4
+    3084:	0e 94 c8 03 	call	0x790	; 0x790 <run_call_table>
+    3088:	e0 e1       	ldi	r30, 0x10	; 16
+    308a:	0e 94 c8 03 	call	0x790	; 0x790 <run_call_table>
+    308e:	ae e1       	ldi	r26, 0x1E	; 30
+    3090:	ad a7       	std	Y+45, r26	; 0x2d
+    3092:	a0 ef       	ldi	r26, 0xF0	; 240
+    3094:	ae a7       	std	Y+46, r26	; 0x2e
+    3096:	0e 94 ac 05 	call	0xb58	; 0xb58 <r26_is_random_number_between_0x8d_0x8e>
+    309a:	ee 85       	ldd	r30, Y+14	; 0x0e
+    309c:	e2 fd       	sbrc	r30, 2
+    309e:	a8 e2       	ldi	r26, 0x28	; 40
+    30a0:	ad 8b       	std	Y+21, r26	; 0x15
+    30a2:	0c 94 75 18 	jmp	0x30ea	; 0x30ea <rand3_done>
+
+000030a6 <check_time>:
+    30a6:	e9 a5       	ldd	r30, Y+41	; 0x29
+    30a8:	fd 89       	ldd	r31, Y+21	; 0x15
+    30aa:	fe 17       	cp	r31, r30
+    30ac:	f1 f4       	brne	.+60     	; 0x30ea <rand3_done>
+    30ae:	af 3f       	cpi	r26, 0xFF	; 255
+    30b0:	d1 f0       	breq	.+52     	; 0x30e6 <rand3_end_of_mute>
+    30b2:	af ef       	ldi	r26, 0xFF	; 255
+    30b4:	af 87       	std	Y+15, r26	; 0x0f
+    30b6:	a5 e0       	ldi	r26, 0x05	; 5
+    30b8:	ad a7       	std	Y+45, r26	; 0x2d
+    30ba:	aa e5       	ldi	r26, 0x5A	; 90
+    30bc:	ae a7       	std	Y+46, r26	; 0x2e
+    30be:	0e 94 ac 05 	call	0xb58	; 0xb58 <r26_is_random_number_between_0x8d_0x8e>
+    30c2:	ee 85       	ldd	r30, Y+14	; 0x0e
+    30c4:	e2 fd       	sbrc	r30, 2
+    30c6:	a9 e1       	ldi	r26, 0x19	; 25
+    30c8:	ad 8b       	std	Y+21, r26	; 0x15
+    30ca:	e8 e1       	ldi	r30, 0x18	; 24
+    30cc:	0e 94 c8 03 	call	0x790	; 0x790 <run_call_table>
+    30d0:	d8 bb       	out	0x18, r29	; 24
+    30d2:	d0 93 05 02 	sts	0x0205, r29
+    30d6:	d0 93 06 02 	sts	0x0206, r29
+    30da:	0e 94 4b 0a 	call	0x1496	; 0x1496 <multiplyr30r31+0x134>
+    30de:	a4 e6       	ldi	r26, 0x64	; 100
+    30e0:	0e 94 76 09 	call	0x12ec	; 0x12ec <show_text_on_display>
+    30e4:	02 c0       	rjmp	.+4      	; 0x30ea <rand3_done>
+
+000030e6 <rand3_end_of_mute>:
+    30e6:	f0 e0       	ldi	r31, 0x00	; 0
+    30e8:	ff 87       	std	Y+15, r31	; 0x0f
+
+000030ea <rand3_done>:
+    30ea:	ed 85       	ldd	r30, Y+13	; 0x0d
+    30ec:	e2 30       	cpi	r30, 0x02	; 2
+    30ee:	69 f4       	brne	.+26     	; 0x310a <goback>
+    30f0:	a0 e2       	ldi	r26, 0x20	; 32
+    30f2:	ee 85       	ldd	r30, Y+14	; 0x0e
+    30f4:	e2 fd       	sbrc	r30, 2
+    30f6:	a1 e2       	ldi	r26, 0x21	; 33
+    30f8:	0e 94 6e 09 	call	0x12dc	; 0x12dc <show_text_on_display2>
+    30fc:	f9 a5       	ldd	r31, Y+41	; 0x29
+    30fe:	ed 89       	ldd	r30, Y+21	; 0x15
+    3100:	ef 1b       	sub	r30, r31
+    3102:	fd e4       	ldi	r31, 0x4D	; 77
+    3104:	0e 94 5c 09 	call	0x12b8	; 0x12b8 <display_number_on_display>
+    3108:	08 95       	ret
+
+0000310a <goback>:
+    310a:	e8 89       	ldd	r30, Y+16	; 0x10
+    310c:	e8 32       	cpi	r30, 0x28	; 40
+    310e:	10 f4       	brcc	.+4      	; 0x3114 <omk>
+    3110:	0c 94 1f 02 	jmp	0x43e	; 0x43e <rand3_time_on_max+0x34e>
+
+00003114 <omk>:
+    3114:	0c 94 22 02 	jmp	0x444	; 0x444 <rand3_time_on_max+0x354>
+
+00003118 <replace_0x438>:
+    3118:	0c 94 15 18 	jmp	0x302a	; 0x302a <hookloopmain>
+
+0000311c <hook_show_Text_on_Display>:
+    311c:	c0 e1       	ldi	r28, 0x10	; 16
+    311e:	2c 2f       	mov	r18, r28
+    3120:	a0 32       	cpi	r26, 0x20	; 32
+    3122:	10 f4       	brcc	.+4      	; 0x3128 <new_display>
+
+00003124 <goback>:
+    3124:	0c 94 98 09 	jmp	0x1330	; 0x1330 <show_text_on_display+0x44>
+
+00003128 <new_display>:
+    3128:	c0 e2       	ldi	r28, 0x20	; 32
+    312a:	ac 1b       	sub	r26, r28
+    312c:	c4 e0       	ldi	r28, 0x04	; 4
+
+0000312e <loop0>:
+    312e:	88 94       	clc
+    3130:	aa 1f       	adc	r26, r26
+    3132:	bb 1f       	adc	r27, r27
+    3134:	ca 95       	dec	r28
+    3136:	d9 f7       	brne	.-10     	; 0x312e <loop0>
+    3138:	ce ec       	ldi	r28, 0xCE	; 206
+    313a:	ac 0f       	add	r26, r28
+    313c:	c1 e3       	ldi	r28, 0x31	; 49
+    313e:	bc 1f       	adc	r27, r28
+    3140:	0c 94 a2 09 	jmp	0x1344	; 0x1344 <show_text_on_display+0x58>
+
+00003144 <got_menu_option_0b>:
+    3144:	a3 e2       	ldi	r26, 0x23	; 35
+    3146:	aa 8f       	std	Y+26, r26	; 0x1a
+    3148:	a0 e2       	ldi	r26, 0x20	; 32
+    314a:	a8 8f       	std	Y+24, r26	; 0x18
+    314c:	a9 8f       	std	Y+25, r26	; 0x19
+    314e:	0e 94 76 09 	call	0x12ec	; 0x12ec <show_text_on_display>
+    3152:	5a e0       	ldi	r21, 0x0A	; 10
+    3154:	28 e0       	ldi	r18, 0x08	; 8
+    3156:	49 e0       	ldi	r20, 0x09	; 9
+    3158:	63 e0       	ldi	r22, 0x03	; 3
+    315a:	08 95       	ret
+
+0000315c <add_new_menu_options>:
+    315c:	ad 30       	cpi	r26, 0x0D	; 13
+    315e:	11 f4       	brne	.+4      	; 0x3164 <not_0xd>
+    3160:	0c 94 a1 04 	jmp	0x942	; 0x942 <run_call_table+0x1b2>
+
+00003164 <not_0xd>:
+    3164:	a3 32       	cpi	r26, 0x23	; 35
+    3166:	29 f4       	brne	.+10     	; 0x3172 <not_0x23>
+    3168:	ae e0       	ldi	r26, 0x0E	; 14
+    316a:	0e 94 03 0d 	call	0x1a06	; 0x1a06 <multiplyr30r31+0x6a4>
+    316e:	0c 94 7f 04 	jmp	0x8fe	; 0x8fe <run_call_table+0x16e>
+
+00003172 <not_0x23>:
+    3172:	a2 32       	cpi	r26, 0x22	; 34
+    3174:	a1 f4       	brne	.+40     	; 0x319e <not_0x22>
+    3176:	a1 e0       	ldi	r26, 0x01	; 1
+    3178:	be 85       	ldd	r27, Y+14	; 0x0e
+    317a:	ba 27       	eor	r27, r26
+    317c:	be 87       	std	Y+14, r27	; 0x0e
+    317e:	b1 70       	andi	r27, 0x01	; 1
+    3180:	b0 93 07 02 	sts	0x0207, r27
+    3184:	a3 e2       	ldi	r26, 0x23	; 35
+    3186:	ab 0f       	add	r26, r27
+    3188:	0e 94 76 09 	call	0x12ec	; 0x12ec <show_text_on_display>
+    318c:	a4 e0       	ldi	r26, 0x04	; 4
+    318e:	0e 94 76 09 	call	0x12ec	; 0x12ec <show_text_on_display>
+    3192:	64 e0       	ldi	r22, 0x04	; 4
+    3194:	34 e0       	ldi	r19, 0x04	; 4
+    3196:	44 e0       	ldi	r20, 0x04	; 4
+    3198:	54 e0       	ldi	r21, 0x04	; 4
+    319a:	0c 94 b3 04 	jmp	0x966	; 0x966 <run_call_table+0x1d6>
+
+0000319e <not_0x22>:
+    319e:	a1 32       	cpi	r26, 0x21	; 33
+    31a0:	49 f4       	brne	.+18     	; 0x31b4 <not_0x21>
+    31a2:	a2 e0       	ldi	r26, 0x02	; 2
+    31a4:	be 85       	ldd	r27, Y+14	; 0x0e
+    31a6:	ba 27       	eor	r27, r26
+    31a8:	b4 60       	ori	r27, 0x04	; 4
+    31aa:	be 87       	std	Y+14, r27	; 0x0e
+    31ac:	a0 e0       	ldi	r26, 0x00	; 0
+    31ae:	af 87       	std	Y+15, r26	; 0x0f
+    31b0:	0c 94 0e 05 	jmp	0xa1c	; 0xa1c <run_call_table+0x28c>
+
+000031b4 <not_0x21>:
+    31b4:	a0 32       	cpi	r26, 0x20	; 32
+    31b6:	49 f4       	brne	.+18     	; 0x31ca <not_0x20>
+    31b8:	a2 e0       	ldi	r26, 0x02	; 2
+    31ba:	be 85       	ldd	r27, Y+14	; 0x0e
+    31bc:	ba 27       	eor	r27, r26
+    31be:	bb 7f       	andi	r27, 0xFB	; 251
+    31c0:	be 87       	std	Y+14, r27	; 0x0e
+    31c2:	a0 e0       	ldi	r26, 0x00	; 0
+    31c4:	af 87       	std	Y+15, r26	; 0x0f
+    31c6:	0c 94 0e 05 	jmp	0xa1c	; 0xa1c <run_call_table+0x28c>
+
+000031ca <not_0x20>:
+    31ca:	0c 94 a5 04 	jmp	0x94a	; 0x94a <run_call_table+0x1ba>
+
+000031ce <string_0x20>:
+    31ce:	52 61       	ori	r21, 0x12	; 18
+    31d0:	6e 64       	ori	r22, 0x4E	; 78
+    31d2:	6f 6d       	ori	r22, 0xDF	; 223
+    31d4:	33 20       	and	r3, r3
+    31d6:	4d 6f       	ori	r20, 0xFD	; 253
+    31d8:	64 65       	ori	r22, 0x54	; 84
+    31da:	20 3f       	cpi	r18, 0xF0	; 240
+    31dc:	20 20       	and	r2, r0
+
+000031de <string_0x21>:
+    31de:	52 61       	ori	r21, 0x12	; 18
+    31e0:	6e 64       	ori	r22, 0x4E	; 78
+    31e2:	6f 6d       	ori	r22, 0xDF	; 223
+    31e4:	34 20       	and	r3, r4
+    31e6:	4d 6f       	ori	r20, 0xFD	; 253
+    31e8:	64 65       	ori	r22, 0x54	; 84
+    31ea:	20 3f       	cpi	r18, 0xF0	; 240
+    31ec:	20 20       	and	r2, r0
+
+000031ee <string_0x22>:
+    31ee:	44 65       	ori	r20, 0x54	; 84
+    31f0:	62 75       	andi	r22, 0x52	; 82
+    31f2:	67 20       	and	r6, r7
+    31f4:	4d 6f       	ori	r20, 0xFD	; 253
+    31f6:	64 65       	ori	r22, 0x54	; 84
+    31f8:	3f 20       	and	r3, r15
+    31fa:	20 20       	and	r2, r0
+    31fc:	20 20       	and	r2, r0
+
+000031fe <string_0x23>:
+    31fe:	4c 69       	ori	r20, 0x9C	; 156
+    3200:	6e 6b       	ori	r22, 0xBE	; 190
+    3202:	20 53       	subi	r18, 0x30	; 48
+    3204:	6c 61       	ori	r22, 0x1C	; 28
+    3206:	76 65       	ori	r23, 0x56	; 86
+    3208:	20 55       	subi	r18, 0x50	; 80
+    320a:	6e 69       	ori	r22, 0x9E	; 158
+    320c:	74 3f       	cpi	r23, 0xF4	; 244
+
+0000320e <string_0x24>:
+    320e:	44 65       	ori	r20, 0x54	; 84
+    3210:	62 75       	andi	r22, 0x52	; 82
+    3212:	67 20       	and	r6, r7
+    3214:	44 69       	ori	r20, 0x94	; 148
+    3216:	73 61       	ori	r23, 0x13	; 19
+    3218:	62 6c       	ori	r22, 0xC2	; 194
+    321a:	65 64       	ori	r22, 0x45	; 69
+    321c:	20 20       	and	r2, r0
+
+0000321e <string_0x25>:
+    321e:	44 65       	ori	r20, 0x54	; 84
+    3220:	62 75       	andi	r22, 0x52	; 82
+    3222:	67 20       	and	r6, r7
+    3224:	45 6e       	ori	r20, 0xE5	; 229
+    3226:	61 62       	ori	r22, 0x21	; 33
+    3228:	6c 65       	ori	r22, 0x5C	; 92
+    322a:	64 20       	and	r6, r4
+    322c:	20 20       	and	r2, r0
+
+0000322e <replace_0x93e>:
+    322e:	0c 94 ae 18 	jmp	0x315c	; 0x315c <add_new_menu_options>
+
+00003232 <replace_0x132c>:
+    3232:	0c 94 8e 18 	jmp	0x311c	; 0x311c <hook_show_Text_on_Display>
+
+00003236 <replace_0x8f8>:
+    3236:	0c 94 a2 18 	jmp	0x3144	; 0x3144 <got_menu_option_0b>
+
+0000323a <replace_0x1d78>:
+    323a:	4d 6f       	ori	r20, 0xFD	; 253
+    323c:	72 65       	ori	r23, 0x52	; 82
+    323e:	20 4f       	sbci	r18, 0xF0	; 240
+    3240:	70 74       	andi	r23, 0x40	; 64
+    3242:	69 6f       	ori	r22, 0xF9	; 249
+    3244:	6e 73       	andi	r22, 0x3E	; 62
+    3246:	3f 20       	and	r3, r15
+    3248:	20 20       	and	r2, r0
+
+0000324a <replace_0x18e0>:
+    324a:	aa 27       	eor	r26, r26
+
+0000324c <replace_0x1924>:
+    324c:	fb 2f       	mov	r31, r27
+
+0000324e <replace_0x128a>:
+    324e:	f4 e6       	ldi	r31, 0x64	; 100
+    3250:	0e 94 b1 09 	call	0x1362	; 0x1362 <multiplyr30r31>
+    3254:	ef 2f       	mov	r30, r31
+    3256:	0c 94 50 09 	jmp	0x12a0	; 0x12a0 <r26_is_random_number_between_0x8d_0x8e+0x748>

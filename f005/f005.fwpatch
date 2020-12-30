@@ -467,3 +467,15 @@ Disassembly of section .text:
 0000331a <Label_0x1150>:
     331a:	1f be       	out	0x3f, r1	; 63
     331c:	18 95       	reti
+
+0000331e <replace_0x45e>:
+    331e:	af 73       	andi	r26, 0x3F	; 63
+
+00003320 <replace_0x1690>:
+    3320:	a0 e6       	ldi	r26, 0x60	; 96
+
+00003322 <replace_0x16b2>:
+    3322:	a0 e6       	ldi	r26, 0x60	; 96
+
+00003324 <replace_0x16a4>:
+    3324:	a4 e0       	ldi	r26, 0x04	; 4

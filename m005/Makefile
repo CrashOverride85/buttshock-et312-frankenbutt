@@ -1,5 +1,5 @@
-TARGET=f005
-SOURCES=changeversion.S ./hookmain.S ./newmenu.S ../f002/removerandomxor.S ../f002/serialdumpmemory.S ../f002/fixknobscaling.S  ../f003/unifyboxes.S displayrefresh.S keepbacklighton.S
+TARGET=m005
+SOURCES=changeversion.S ../f005/hookmain.S ../f005/newmenu.S ../f002/removerandomxor.S ../f002/serialdumpmemory.S ../f002/fixknobscaling.S 
 
 FWUTILS=python3 ../../buttshock-et312-firmware/scripts/fw-utils.py
 
